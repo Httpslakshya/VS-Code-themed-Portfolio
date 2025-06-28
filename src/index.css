@@ -1,0 +1,399 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Creepster&family=Nosifer&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Anime theme fonts */
+.font-creepster {
+  font-family: 'Creepster', cursive;
+}
+
+.font-nosifer {
+  font-family: 'Nosifer', cursive;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d2d30;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #424245;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4c4c4c;
+}
+
+/* Anime mode scrollbar */
+.theme-anime::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+.theme-anime::-webkit-scrollbar-thumb {
+  background: #ff6b35;
+  border-radius: 4px;
+}
+
+.theme-anime::-webkit-scrollbar-thumb:hover {
+  background: #ff8c42;
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.2s ease;
+}
+
+/* Focus styles */
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid #007ACC;
+  outline-offset: 2px;
+}
+
+/* Anime mode focus styles */
+.theme-anime button:focus,
+.theme-anime input:focus,
+.theme-anime textarea:focus {
+  outline: 2px solid #ff6b35;
+  outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+  background-color: #007ACC;
+  color: white;
+}
+
+.theme-anime ::selection {
+  background-color: #ff6b35;
+  color: white;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 122, 204, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 122, 204, 0.8), 0 0 30px rgba(0, 122, 204, 0.6);
+  }
+}
+
+@keyframes animeGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 107, 53, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.8), 0 0 30px rgba(255, 107, 53, 0.6);
+  }
+}
+
+@keyframes energyFloat {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fireFlicker {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2) rotate(5deg);
+    opacity: 1;
+  }
+}
+
+/* Utility animations */
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.4s ease-out;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-animeGlow {
+  animation: animeGlow 2s ease-in-out infinite;
+}
+
+.animate-energy {
+  animation: energyFloat 8s linear infinite;
+}
+
+.animate-fireFlicker {
+  animation: fireFlicker 1.5s ease-in-out infinite;
+}
+
+/* Theme-specific styles */
+.theme-light {
+  background-color: #ffffff;
+  color: #1f2937;
+}
+
+.theme-monokai {
+  background-color: #272822;
+  color: #f8f8f2;
+}
+
+.theme-dracula {
+  background-color: #282a36;
+  color: #f8f8f2;
+}
+
+.theme-neon {
+  background-color: #000000;
+  color: #00ff00;
+}
+
+.theme-anime {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: #ff6b35;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    padding-bottom: 80px; /* Space for mobile navigation */
+  }
+  
+  .mobile-nav-space {
+    height: 80px;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+}
+
+/* Hover effects */
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Glowing border effect */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #007ACC, #00ff00, #007ACC);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.glow-border:hover::before {
+  opacity: 1;
+}
+
+/* Anime mode glow border */
+.anime-glow-border {
+  position: relative;
+}
+
+.anime-glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #ff6b35, #ff8c42, #ff6b35);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.anime-glow-border:hover::before {
+  opacity: 1;
+}
+
+/* Code syntax highlighting */
+.syntax-keyword {
+  color: #569cd6;
+}
+
+.syntax-string {
+  color: #ce9178;
+}
+
+.syntax-variable {
+  color: #9cdcfe;
+}
+
+.syntax-comment {
+  color: #8b949e;
+}
+
+/* Anime mode syntax highlighting */
+.theme-anime .syntax-keyword {
+  color: #ff8c42;
+}
+
+.theme-anime .syntax-string {
+  color: #ffd23f;
+}
+
+.theme-anime .syntax-variable {
+  color: #ff6b35;
+}
+
+.theme-anime .syntax-comment {
+  color: #ff9a56;
+}
+
+/* Loading spinner */
+.spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #007ACC;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+.anime-spinner {
+  border: 2px solid #1a1a2e;
+  border-top: 2px solid #ff6b35;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Anime mode specific styles */
+.anime-cursor {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><text y="16" font-size="16">⚔️</text></svg>'), auto;
+}
+
+/* Glassmorphism effect */
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.anime-glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 107, 53, 0.1);
+  border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+/* Neon glow effects */
+.neon-glow {
+  text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+}
+
+.neon-border {
+  box-shadow: 0 0 5px currentColor, inset 0 0 5px currentColor;
+}
+
+/* Anime mode text effects */
+.anime-text-glow {
+  text-shadow: 0 0 10px #ff6b35, 0 0 20px #ff6b35, 0 0 30px #ff6b35;
+}
+
+.anime-border-glow {
+  box-shadow: 0 0 10px #ff6b35, inset 0 0 10px rgba(255, 107, 53, 0.1);
+}
+
+/* Energy particle effects */
+.energy-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #ff6b35 0%, transparent 70%);
+  border-radius: 50%;
+  animation: energyFloat 6s linear infinite;
+}
+
+/* Fire particle effects */
+.fire-particle {
+  position: absolute;
+  animation: fireFlicker 2s ease-in-out infinite;
+}
+
+/* Terminal specific anime styling */
+.anime-terminal {
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.9) 100%);
+  border: 2px solid #ff6b35;
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+}
+
+.anime-terminal-input {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #ff6b35;
+  color: #ff8c42;
+}
+
+.anime-terminal-input:focus {
+  box-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+}
