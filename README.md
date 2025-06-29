@@ -1,8 +1,8 @@
 # VS-Code-theme-portfolio
-⚡ Developer Portfolio – A Code-Inspired Interactive Portfolio
+**⚡ Developer Portfolio** – A Code-Inspired Interactive Portfolio
 Welcome to my interactive developer portfolio, designed with a modern, code-editor-inspired interface. This is not just a portfolio — it's a creative playground that reflects my personality, skills, and the way I think as a developer.
 
-🧠 Key Features
+**🧠 Key Features**
 📂 File-based Navigation: Inspired by VS Code, navigate through different "files" like about.tsx, skills.tsx, and projects.tsx to explore my journey.
 
 🎮 Fun Interactions: Includes playful elements like a terminal simulator and an anime-themed easter egg for those who explore deeper.
