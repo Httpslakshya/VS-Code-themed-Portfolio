@@ -1,248 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  User, 
-  Code, 
-  FolderOpen, 
-  Mail, 
-  Briefcase,
-  Award,
-  Play,
-  MessageCircle,
-  FileText,
-  Bot,
-  Terminal as TerminalIcon,
-  Home as HomeIcon
-} from 'lucide-react';
-import TopBar from './components/TopBar';
-import Sidebar from './components/Sidebar';
-import TabBar from './components/TabBar';
-import Terminal from './components/Terminal';
-import DeviceWarning from './components/DeviceWarning';
-import Home from './components/sections/Home';
-import About from './components/sections/About';
-import Skills from './components/sections/Skills';
-import Projects from './components/sections/Projects';
-import Experience from './components/sections/Experience';
-import Achievements from './components/sections/Achievements';
-import Contact from './components/sections/Contact';
-import Playground from './components/sections/Playground';
-import Secret from './components/sections/Secret';
-import Readme from './components/sections/Readme';
-import { ThemeProvider, useTheme } from './contexts/ThemeContext';
+import { CSSProperties, FormEvent, PointerEvent, useEffect, useRef, useState } from 'react';
+import { ArrowDownRight, ArrowUpRight, BrainCircuit, Code2, Command, Download, Github, Linkedin, Menu, MousePointer2, Send, Sparkles, Terminal, X, Zap, Boxes, ChevronRight, GraduationCap, Circle } from 'lucide-react';
+import './overrides.css';
 
-function AppContent() {
-  const [activeTab, setActiveTab] = useState('home');
-  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [showDeviceWarning, setShowDeviceWarning] = useState(false);
-  const { theme } = useTheme();
-
-  // Check device type
-  useEffect(() => {
-    const checkDevice = () => {
-      const width = window.innerWidth;
-      const isMobileDevice = width < 1024; // Consider tablets as mobile too
-      setIsMobile(isMobileDevice);
-      
-      // Show warning for non-desktop devices
-      if (isMobileDevice && !localStorage.getItem('deviceWarningShown')) {
-        setShowDeviceWarning(true);
-      }
-    };
-
-    checkDevice();
-    window.addEventListener('resize', checkDevice);
-    return () => window.removeEventListener('resize', checkDevice);
-  }, []);
-
-  const tabs = [
-    { id: 'home', label: 'home.tsx', icon: HomeIcon },
-    { id: 'about', label: 'about.tsx', icon: User },
-    { id: 'skills', label: 'skills.json', icon: Code },
-    { id: 'projects', label: 'projects.ts', icon: FolderOpen },
-    { id: 'experience', label: 'experience.js', icon: Briefcase },
-    { id: 'achievements', label: 'achievements.md', icon: Award },
-    { id: 'playground', label: 'playground.js', icon: Play },
-    { id: 'secret', label: 'secret.txt', icon: FileText },
-    { id: 'readme', label: 'readme.md', icon: MessageCircle },
-    { id: 'contact', label: 'contact.tsx', icon: Mail }
-  ];
-
-  // Mobile tabs (limited set)
-  const mobileTabs = [
-    { id: 'home', label: 'Home', icon: HomeIcon },
-    { id: 'about', label: 'About', icon: User },
-    { id: 'projects', label: 'Projects', icon: FolderOpen },
-    { id: 'skills', label: 'Skills', icon: Code },
-    { id: 'contact', label: 'Contact', icon: Mail }
-  ];
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'home':
-        return <Home />;
-      case 'about':
-        return <About />;
-      case 'skills':
-        return <Skills />;
-      case 'projects':
-        return <Projects />;
-      case 'experience':
-        return <Experience />;
-      case 'achievements':
-        return <Achievements />;
-      case 'playground':
-        return <Playground />;
-      case 'secret':
-        return <Secret />;
-      case 'readme':
-        return <Readme />;
-      case 'contact':
-        return <Contact />;
-      default:
-        return <Home />;
-    }
-  };
-
-  const themeClasses = {
-    dark: 'bg-[#1e1e1e] text-white',
-    light: 'bg-white text-gray-900',
-    monokai: 'bg-[#272822] text-[#f8f8f2]',
-    dracula: 'bg-[#282a36] text-[#f8f8f2]',
-    neon: 'bg-black text-[#00ff00]'
-  };
-
-  const handleDismissWarning = () => {
-    setShowDeviceWarning(false);
-    localStorage.setItem('deviceWarningShown', 'true');
-  };
-
-  return (
-    <div className={`min-h-screen flex flex-col ${themeClasses[theme]}`}>
-      {/* Device Warning Modal */}
-      {showDeviceWarning && (
-        <DeviceWarning onDismiss={handleDismissWarning} />
-      )}
-
-      {/* Top Bar - Hidden on mobile */}
-      {!isMobile && (
-        <TopBar onTerminalClick={() => setIsTerminalOpen(true)} />
-      )}
-      
-      {/* Mobile-only minimal top bar */}
-      {isMobile && (
-        <div className={`h-12 flex items-center justify-between px-4 border-b z-20 relative ${
-          theme === 'light' ? 'bg-[#f3f3f3] border-gray-300' : 
-          theme === 'monokai' ? 'bg-[#272822] border-[#3e3d32]' :
-          theme === 'dracula' ? 'bg-[#282a36] border-[#44475a]' :
-          theme === 'neon' ? 'bg-black border-[#00ff00]' :
-          'bg-[#2d2d30] border-[#3c3c3c]'
-        }`}>
-          <span className={`font-medium ${
-            theme === 'light' ? 'text-gray-900' : 
-            theme === 'neon' ? 'text-[#00ff00]' : 'text-white'
-          }`}>
-            Lakshya Dharkar
-          </span>
-          <button
-            onClick={() => setIsTerminalOpen(true)}
-            className={`p-2 rounded ${
-              theme === 'light' ? 'hover:bg-gray-200' : 'hover:bg-opacity-20 hover:bg-white'
-            }`}
-          >
-            <TerminalIcon className="w-5 h-5" />
-          </button>
-        </div>
-      )}
-      
-      <div className="flex flex-1 overflow-hidden relative z-10">
-        {/* Desktop Sidebar - Fixed */}
-        {!isMobile && (
-          <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} tabs={tabs} />
-        )}
-        
-        {/* Main Content Area */}
-        <div className={`flex-1 flex flex-col ${!isMobile ? 'ml-64 mt-8' : ''}`}>
-          {/* Tab Bar - Hidden on mobile */}
-          {!isMobile && (
-            <TabBar
-              activeTab={activeTab}
-              tabs={tabs}
-              onTabChange={setActiveTab}
-            />
-          )}
-          
-          {/* Content */}
-          <div className={`flex-1 overflow-auto ${isMobile ? 'pb-20' : ''}`}>
-            {renderContent()}
-          </div>
-          
-          {/* Status Bar - Hidden on mobile */}
-          {!isMobile && (
-            <div className="bg-[#007ACC] text-white px-4 py-1 text-xs flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <span>Portfolio v2.0.0</span>
-                <span>UTF-8</span>
-                <span>React TypeScript</span>
-              </div>
-              <div className="flex items-center space-x-4">
-                <span>Ln 1, Col 1</span>
-                <span>Spaces: 2</span>
-                <span>🚀 Ready</span>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Mobile Bottom Navigation with Glassmorphism */}
-      {isMobile && (
-        <div className="fixed bottom-0 left-0 right-0 z-50">
-          <div className={`backdrop-blur-lg bg-opacity-80 border-t px-4 py-3 ${
-            theme === 'light' ? 'bg-white/80 border-gray-200' :
-            theme === 'monokai' ? 'bg-[#272822]/80 border-[#3e3d32]' :
-            theme === 'dracula' ? 'bg-[#282a36]/80 border-[#44475a]' :
-            theme === 'neon' ? 'bg-black/80 border-[#00ff00]' :
-            'bg-[#252526]/80 border-[#3c3c3c]'
-          }`}>
-            <div className="flex items-center justify-around">
-              {mobileTabs.map((tab) => {
-                const Icon = tab.icon;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`flex flex-col items-center p-2 rounded-lg transition-all duration-300 ${
-                      activeTab === tab.id
-                        ? theme === 'neon' ? 'bg-[#00ff00]/20 text-[#00ff00]' : 'bg-[#007ACC]/20 text-[#007ACC]'
-                        : theme === 'light' ? 'text-gray-600 hover:text-gray-900' :
-                          theme === 'neon' ? 'text-[#00cc00] hover:text-[#00ff00]' : 'text-[#cccccc] hover:text-white'
-                    }`}
-                  >
-                    <Icon className="w-5 h-5 mb-1" />
-                    <span className="text-xs font-medium">{tab.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Terminal Modal */}
-      {isTerminalOpen && (
-        <Terminal onClose={() => setIsTerminalOpen(false)} />
-      )}
-    </div>
-  );
-}
+type Project = { name: string; label: string; description: string; problem: string; solution: string; stack: string[]; github: string; status: string; accent: string; image: string };
+const projects: Project[] = [
+  { name: 'DocMind', label: '01 / AI DOCUMENT INTELLIGENCE', description: 'Turns any PDF into an intelligent knowledge base for chat, search, summaries, and insight extraction.', problem: 'Useful information is buried in lengthy technical documents.', solution: 'A RAG-oriented document workflow makes complex PDFs conversational and searchable.', stack: ['Python', 'RAG', 'AI', 'PDF'], github: 'https://github.com/Httpslakshya/DocMind', status: 'AI SYSTEM', accent: 'cyan', image: '/projects/docmind-home.png' },
+  { name: 'COSMO AI', label: '02 / PERSONAL AUTOMATION', description: 'A desktop assistant built around secure voice control and system automation.', problem: 'Everyday computer actions still involve too much repetitive, manual work.', solution: 'Voice-first commands and automation make personal computing feel more direct and useful.', stack: ['Python', 'Voice AI', 'Automation'], github: 'https://github.com/Httpslakshya/COSMO-AI', status: 'AI SYSTEM', accent: 'violet', image: '/projects/cosmo-home.png' },
+  { name: 'MediStock', label: '03 / HEALTHCARE OPERATIONS', description: 'A practical medicine inventory system for tracking stock, expiries, and vital information.', problem: 'Manual medicine tracking makes stock visibility and expiry management difficult.', solution: 'A focused dashboard combines inventory operations with symptom-based discovery.', stack: ['React', 'JavaScript', 'UI/UX'], github: 'https://github.com/Httpslakshya/MediStock', status: 'SHIPPED', accent: 'lime', image: '/projects/medistock-home.png' },
+  { name: 'reflekt-ai', label: '04 / PROMPT INTELLIGENCE', description: 'Transforms messy, multilingual thoughts into structured AI prompts with customizable depth and style.', problem: 'Good AI outcomes often get lost between intent and an unstructured prompt.', solution: 'A guided prompt transformation flow preserves context while creating clearer instructions.', stack: ['TypeScript', 'AI', 'UX'], github: 'https://github.com/Httpslakshya/reflekt-ai', status: 'SHIPPED', accent: 'cyan', image: '/projects/reflekt-home.png' },
+  { name: 'Malwa Express', label: '05 / INTERACTIVE WEB EXPERIENCE', description: 'An atmospheric 90s Bollywood night-bus journey across Central India, built around sound, memory, and motion.', problem: 'Most web experiences lose their identity by treating the interface as only a container.', solution: 'A cinematic, story-led journey uses interaction and atmosphere to make the web feel transportive.', stack: ['HTML', 'Motion', 'Storytelling'], github: 'https://github.com/Httpslakshya/MalwaExpress', status: 'EXPERIMENT', accent: 'violet', image: '/projects/malwa-home.png' },
+];
+const skills = [['Python', 'Core language for automation, APIs & AI workflows'], ['AI / ML', 'Applied intelligence, recommendations & LLM systems'], ['Backend', 'FastAPI, Flask, APIs & service architecture'], ['Automation', 'Turning repetitive operations into reliable flows'], ['React', 'Interfaces for product-minded technical experiences'], ['Data', 'Retrieval, structured information & decision systems']];
+const chessPosition = ['♜', '♞', '♝', '♛', '♚', '♝', '♞', '♜', '♟', '♟', '♟', '♟', '♟', '♟', '♟', '♟', '', '', '', '', '', '♞', '', '', '', '', '', '♟', '', '', '', '', '', '', '', '♙', '', '♗', '', '', '', '', '', '', '', '♘', '', '', '♙', '♙', '♙', '', '♙', '♙', '♙', '♙', '♖', '♘', '♗', '♕', '♔', '', '', '♖'];
+const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
 function App() {
-  return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
-  );
+  const [terminalOpen, setTerminalOpen] = useState(false); const [menuOpen, setMenuOpen] = useState(false); const [selectedProject, setSelectedProject] = useState<Project | null>(null); const [activeProject, setActiveProject] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0); const cursorRef = useRef<HTMLDivElement>(null); const cursorTarget = useRef({ x: -300, y: -300 });
+  useEffect(() => { const update = () => setScrollProgress(window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight)); window.addEventListener('scroll', update, { passive: true }); update(); return () => window.removeEventListener('scroll', update); }, []);
+  useEffect(() => { if (window.matchMedia('(prefers-reduced-motion: reduce), (pointer: coarse)').matches) return; let x = -100; let y = -100; let frame = 0; const tick = () => { x += (cursorTarget.current.x - x) * .14; y += (cursorTarget.current.y - y) * .14; if (cursorRef.current) cursorRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`; frame = requestAnimationFrame(tick); }; tick(); return () => cancelAnimationFrame(frame); }, []);
+  const trackPointer = (event: PointerEvent<HTMLElement>) => { cursorTarget.current = { x: event.clientX - 14, y: event.clientY - 14 }; const interactive = (event.target as HTMLElement).closest('a, button'); cursorRef.current?.classList.toggle('is-active', Boolean(interactive)); };
+  return <main onPointerMove={trackPointer}><div className="noise" /><div ref={cursorRef} className="custom-cursor"><MousePointer2 size={14} fill="currentColor" /></div><div className="reading-progress" style={{ transform: `scaleX(${scrollProgress})` }} />
+    <nav className="nav shell"><button className="brand" onClick={() => scrollTo('home')} aria-label="Back home"><span>LD</span><i /></button><div className="nav-links">{['work', 'capabilities', 'journey'].map(item => <button key={item} onClick={() => scrollTo(item)}>{item}</button>)}</div><div className="nav-actions"><button className="terminal-trigger" onClick={() => setTerminalOpen(true)}><Command size={15} /> Open interface</button><button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu"><Menu /></button></div>{menuOpen && <div className="mobile-menu">{['work', 'capabilities', 'journey'].map(item => <button key={item} onClick={() => { scrollTo(item); setMenuOpen(false); }}>{item}</button>)}</div>}</nav>
+    <section id="home" className="hero shell"><div className="hero-copy reveal"><div className="eyebrow"><span className="status-dot" /> AVAILABLE FOR SELECTED OPPORTUNITIES</div><h1>Building useful<br /><em>intelligence</em> for the web.</h1><p className="intro">I’m Lakshya, a Python Developer and AI Engineer focused on turning complex ideas into precise, human-centered software.</p><div className="hero-ctas"><button className="button primary" onClick={() => scrollTo('work')}>Explore selected work <ArrowDownRight size={18} /></button><button className="button ghost" onClick={() => setTerminalOpen(true)}><Terminal size={17} /> Try the portfolio CLI</button></div><div className="signal-row"><span>PYTHON</span><span>AI / ML</span><span>BACKEND</span><span>AUTOMATION</span></div></div><div className="hero-visual reveal delay"><div className="orb orb-one" /><div className="orb orb-two" /><div className="portrait-frame"><img src="/IMG_20250628_182906.jpg" alt="Lakshya Dharkar" /><div className="portrait-wash" /></div><div className="system-card top-card"><div><span className="mini-label">CURRENT FOCUS</span><strong>Applied AI systems</strong></div><BrainCircuit /></div><div className="system-card bottom-card"><span className="pulse-ring"><Circle size={11} fill="currentColor" /></span><div><span className="mini-label">SYSTEM STATUS</span><strong>Building in public</strong></div></div><div className="crosshair">+</div></div><div className="hero-index">01 — 04</div></section>
+    <section className="marquee"><div>PYTHON ENGINEER <b>✦</b> AI BUILDER <b>✦</b> PROBLEM SOLVER <b>✦</b> PRODUCT THINKER <b>✦</b> PYTHON ENGINEER <b>✦</b></div></section>
+    <section id="work" className="project-explorer"><div className="shell"><div className="explorer-title"><span className="section-kicker">✳ SELECTED PROJECTS</span><p>Choose a system to inspect the intent, stack, and build approach.</p></div><div className="explorer-layout"><div className="explorer-list">{projects.map((project, index) => <button key={project.name} onMouseEnter={() => setActiveProject(index)} onFocus={() => setActiveProject(index)} onClick={() => setSelectedProject(project)} className={activeProject === index ? 'project-option is-selected' : 'project-option'}><span>0{index + 1}.</span><strong>{project.name}</strong><div>{project.stack.slice(0, 3).map(tag => <i key={tag}>{tag}</i>)}</div></button>)}</div><ProjectPreview project={projects[activeProject]} onOpen={() => setSelectedProject(projects[activeProject])} /></div></div></section>
+    <section id="capabilities" className="section capabilities shell"><div className="section-head"><div><span className="section-kicker">CAPABILITY MAP</span><h2>Technical range,<br /><em>intentional focus.</em></h2></div><p>My current direction sits where backend engineering, automation, and AI-enabled product thinking meet.</p></div><div className="skill-grid">{skills.map(([name, desc], i) => <div className="skill-card" key={name}><span>0{i + 1}</span><div className="skill-icon">{i === 0 ? <Code2 /> : i === 1 ? <Sparkles /> : i === 2 ? <Boxes /> : <Zap />}</div><h3>{name}</h3><p>{desc}</p><div className="skill-line"><i /></div></div>)}</div></section>
+    <section id="journey" className="journey shell"><div className="journey-sticky"><span className="section-kicker">TRAJECTORY</span><h2>Always moving<br />toward <em>better systems.</em></h2><button className="text-link" onClick={() => setTerminalOpen(true)}>Read the full signal <ChevronRight size={16} /></button></div><div className="timeline"><div className="timeline-item"><span>NOW</span><h3>Python Developer · AI Engineer</h3><p>Building intelligent applications, APIs, automation workflows, and product experiences where AI adds practical value.</p></div><div className="timeline-item"><span>2023 — NOW</span><h3>Independent builder</h3><p>Shipped web products, hackathon concepts, and user-focused interfaces — learning to turn an idea into an end-to-end experience.</p></div><div className="timeline-item"><span>2022 — NOW</span><h3>B.Tech, Computer Science</h3><p><GraduationCap size={16} /> Swami Vivekanand College of Engineering</p></div></div></section>
+    <section className="playground"><div className="shell"><div className="playground-head"><div><span className="section-kicker">OFF THE CLOCK</span><h2>Patterns, rhythm,<br /><em>and a good endgame.</em></h2></div><p>The sessions outside a terminal that shape how I think inside one.</p></div><PlaylistCarousel /><div className="chess-feature"><div className="chess-copy"><span>LONDON SYSTEM · MAIN LINE</span><strong>Build the centre.</strong><p>Quiet development, sharp ideas. A position about purposeful structure before the tactics arrive.</p><a className="text-link" href="https://www.chess.com/member/theycallmelakshya" target="_blank" rel="noreferrer">Play a game on Chess.com <ArrowUpRight size={16} /></a></div><div className="board" aria-label="London System opening position">{chessPosition.map((piece, index) => <span className={piece && '♜♞♝♛♚♟'.includes(piece) ? 'black-piece' : piece ? 'white-piece' : ''} key={index}>{piece}</span>)}</div></div></div></section>
+    <section className="contact shell"><div><span className="section-kicker">START A CONVERSATION</span><h2>Have a problem worth<br /><em>solving?</em></h2></div><div className="contact-actions"><a className="button primary" href="mailto:lakshyadharkar@gmail.com">Let’s talk <Send size={17} /></a><div><a href="https://github.com/Httpslakshya" target="_blank" rel="noreferrer"><Github /> GitHub</a><a href="https://www.linkedin.com/in/lakshya-dharkar-571004294/" target="_blank" rel="noreferrer"><Linkedin /> LinkedIn</a><a href="/resume.pdf" download><Download /> Resume</a></div></div></section><footer className="shell"><span>© {new Date().getFullYear()} LAKSHYA DHARKAR</span><span>DESIGNED AS A LIVING PORTFOLIO</span></footer>
+    {terminalOpen && <PortfolioTerminal onClose={() => setTerminalOpen(false)} onNavigate={(target) => { setTerminalOpen(false); scrollTo(target); }} />}{selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}</main>;
 }
-
+function ProjectPreview({ project, onOpen }: { project: Project; onOpen: () => void }) { return <article className="project-preview"><div className="preview-visual"><img key={project.image} className="preview-screenshot" src={project.image} alt={`${project.name} preview`} /><div className="preview-shade" /><div className="preview-label"><span>{project.status}</span><strong>{project.name}</strong></div></div><div className="preview-copy"><span>{project.label}</span><p>{project.description}</p><button onClick={onOpen}>Open case study <ArrowUpRight size={17} /></button></div></article> }
+function PlaylistCarousel() { const covers = [['/playlist/bayaan.jpeg', 'Bayaan', 'Seedhe Maut'], ['/playlist/yours-truly.jpeg', 'Yours Truly', 'KR$NA'], ['/playlist/gnx.jpeg', 'GNX', 'Kendrick Lamar'], ['/playlist/seedhe-maut.jpeg', 'Lunch Break', 'Seedhe Maut'], ['/playlist/karan-aujla.jpeg', 'Making Memories', 'Karan Aujla'], ['/playlist/naam-sujal.jpeg', 'Naam Sujal', 'Naam Sujal'], ['/playlist/mamafication.jpeg', 'Mamafication', 'Naam Sujal'], ['/playlist/monopoly-moves.jpeg', 'Monopoly Moves', 'Seedhe Maut'], ['/playlist/chaar-diwaari.jpeg', 'Chaar Diwaari', 'Chaar Diwaari'], ['/playlist/kshama.jpeg', 'Kshama', 'Seedhe Maut'], ['/playlist/lunch-break.jpeg', 'Lunch Break', 'Seedhe Maut']]; const [active, setActive] = useState(2); const dragStart = useRef<number | null>(null); const dragging = useRef(false); const offsetFor = (index: number) => { let offset = index - active; const half = Math.floor(covers.length / 2); if (offset > half) offset -= covers.length; if (offset < -half) offset += covers.length; return offset; }; const move = (direction: number) => setActive(current => (current + direction + covers.length) % covers.length); useEffect(() => { const timer = window.setInterval(() => { if (!dragging.current) move(1); }, 3600); return () => window.clearInterval(timer); }, []); const finishDrag = (event: PointerEvent<HTMLDivElement>) => { if (dragStart.current === null) return; const distance = event.clientX - dragStart.current; dragStart.current = null; dragging.current = false; if (Math.abs(distance) > 35) move(distance < 0 ? 1 : -1); }; return <div className="playlist-carousel"><div className="playlist-head"><span>CURRENT PLAYLIST / DHH + HIP-HOP</span><a href="https://open.spotify.com/user/31ncwlzw3g43nivume7zievwupim?si=fb0024ae543e46be" target="_blank" rel="noreferrer" aria-label="Open Spotify"><ArrowUpRight size={18} /></a></div><div className="deck" aria-label="Current playlist carousel" onPointerDown={event => { dragging.current = true; dragStart.current = event.clientX; event.currentTarget.setPointerCapture(event.pointerId); }} onPointerUp={finishDrag} onPointerCancel={() => { dragStart.current = null; dragging.current = false; }}>{covers.map(([src, name, artist], index) => { const offset = offsetFor(index); const distance = Math.abs(offset); return <button aria-label={`Show ${name}`} key={src} onClick={() => setActive(index)} className={`playlist-card ${distance > 2 ? 'is-hidden' : ''}`} style={{ '--offset': offset, '--distance': distance, '--order': 5 - distance } as CSSProperties}><img draggable={false} src={src} alt={`${name} playlist cover`} /><div><span>ON REPEAT</span><strong>{name}</strong><p>{artist}</p></div></button>; })}<button className="deck-control previous" onClick={() => move(-1)} aria-label="Previous album">‹</button><button className="deck-control next" onClick={() => move(1)} aria-label="Next album">›</button></div><p>Auto-playing · drag the cards, click an album, or use the arrows.</p></div> }
+function PortfolioTerminal({ onClose, onNavigate }: { onClose: () => void; onNavigate: (target: string) => void }) { const [input, setInput] = useState(''); const [lines, setLines] = useState<string[]>(['Portfolio interface v3.0 initialized.', 'Type “help” to explore the system.']); const ref = useRef<HTMLInputElement>(null); useEffect(() => { ref.current?.focus(); }, []); const execute = (event: FormEvent) => { event.preventDefault(); const cmd = input.trim().toLowerCase(); if (!cmd) return; const next = [...lines, `lakshya@portfolio:~$ ${cmd}`]; const nav: Record<string, string> = { work: 'work', projects: 'work', skills: 'capabilities', capabilities: 'capabilities', journey: 'journey', about: 'journey' }; if (cmd === 'clear') setLines([]); else if (nav[cmd]) { setLines([...next, `Opening ${nav[cmd]}…`]); onNavigate(nav[cmd]); } else if (cmd === 'github') { window.open('https://github.com/Httpslakshya', '_blank'); setLines([...next, 'Opening GitHub…']); } else if (cmd === 'linkedin') { window.open('https://www.linkedin.com/in/lakshya-dharkar-571004294/', '_blank'); setLines([...next, 'Opening LinkedIn…']); } else if (cmd === 'contact') setLines([...next, 'Email: lakshyadharkar@gmail.com', 'LinkedIn: /in/lakshya-dharkar-571004294']); else if (cmd === 'stack') setLines([...next, 'Python · AI/ML · FastAPI · React · Automation · APIs']); else if (cmd === 'help') setLines([...next, 'Commands: work, skills, journey, stack, contact, github, linkedin, clear']); else setLines([...next, `Command not found: ${cmd}. Try “help”.`]); setInput(''); }; return <div className="modal-backdrop" onMouseDown={onClose}><div className="terminal-window" onMouseDown={e => e.stopPropagation()}><header><div><i /><i /><i /></div><span><Terminal size={15} /> portfolio.interface</span><button onClick={onClose}><X size={18} /></button></header><div className="terminal-body">{lines.map((line, i) => <p key={i} className={line.includes('$') ? 'command-line' : ''}>{line}</p>)}</div><form onSubmit={execute}><span>lakshya@portfolio:~$</span><input ref={ref} value={input} onChange={e => setInput(e.target.value)} placeholder="try: help" autoComplete="off" /></form></div></div>; }
+function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) { return <div className="modal-backdrop" onMouseDown={onClose}><article className="project-modal" onMouseDown={e => e.stopPropagation()}><button className="modal-close" onClick={onClose}><X /></button><span className="section-kicker">{project.label}</span><h2>{project.name}</h2><p className="modal-lead">{project.description}</p><div className="case-grid"><div><span>THE PROBLEM</span><p>{project.problem}</p></div><div><span>THE APPROACH</span><p>{project.solution}</p></div></div><div className="modal-bottom"><div className="tags">{project.stack.map(x => <b key={x}>{x}</b>)}</div><a className="text-link" target="_blank" rel="noreferrer" href={project.github}>View source <ArrowUpRight size={17} /></a></div></article></div> }
 export default App;

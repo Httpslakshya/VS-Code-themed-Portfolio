@@ -1,0 +1,47 @@
+/* Final interaction overrides: native scroll, stable deck, and real piece colours. */
+.board span.black-piece { color: #182018 !important; text-shadow: 0 1px 0 rgba(255,255,255,.3); }
+.board span.white-piece { color: #fff9e9 !important; text-shadow: 0 1px 2px rgba(0,0,0,.86); }
+
+@media (min-width: 721px) {
+  .custom-cursor { width: 32px; height: 32px; display: grid; place-items: center; border: 0; border-radius: 0; color: var(--lime); transition: width .2s ease, height .2s ease, margin .2s ease, background .2s ease; }
+  .custom-cursor::after { display: none; }
+  .custom-cursor svg { transform: none; filter: drop-shadow(0 0 5px var(--lime)); }
+  .custom-cursor.is-active { width: 52px; height: 52px; margin: -8px; border: 1px solid var(--cyan); border-radius: 50%; background: rgba(196,249,107,.18); color: var(--cyan); }
+}
+
+.playlist-carousel { min-height: 390px; padding-top: 23px; }
+.playlist-carousel .playlist-head { padding: 0 25px; }
+.playlist-carousel > p { padding: 0 25px; margin: 0; color: var(--muted); font-size: 11px; }
+.deck { height: 300px; position: relative; perspective: 1200px; overflow: hidden; }
+.deck .playlist-card { --offset: 0; --distance: 0; --order: 5; position: absolute; z-index: var(--order); left: 50%; top: 23px; width: 220px; height: 260px; padding: 14px; border: 0; background: #b6d8bc; color: #132016; transform: translateX(calc(-50% + var(--offset) * 230px)) rotateY(calc(var(--offset) * -32deg)) rotateZ(calc(var(--offset) * 3deg)) scale(calc(1 - var(--distance) * .10)); opacity: calc(1 - var(--distance) * .28); box-shadow: 0 14px 35px rgba(0,0,0,.5); transition: transform .65s cubic-bezier(.22,.76,.18,1), opacity .45s ease; cursor: pointer; }
+.deck .playlist-card img { width: 100%; height: 145px; object-fit: cover; box-shadow: 0 4px 14px rgba(0,0,0,.28); }
+.deck .playlist-card div { padding-top: 13px; text-align: left; }
+.deck .playlist-card span { display: block; font: 9px 'DM Mono'; letter-spacing: 1px; opacity: .65; }
+.deck .playlist-card strong { display: block; font-size: 24px; line-height: .94; letter-spacing: -1.3px; margin-top: 8px; }
+.deck .playlist-card p { margin: 6px 0 0; font-size: 11px; opacity: .8; }
+.deck .playlist-card:nth-child(2n) { background: #88543b; color: #f3e8d9; }
+.deck .playlist-card:nth-child(3n) { background: #c99889; color: #222; }
+.deck .playlist-card:nth-child(4n) { background: #287b65; color: #e7f1df; }
+.deck .playlist-card:nth-child(5n) { background: #e4c2cc; color: #252124; }
+.deck-control { position: absolute; z-index: 10; top: 122px; font-size: 62px; line-height: 1; color: #168dff; transition: color .2s, transform .2s; }
+.deck-control:hover { color: var(--lime); transform: scale(1.12); }
+.deck-control.previous { left: 16px; }.deck-control.next { right: 16px; }
+
+@media (max-width: 720px) {
+  .playlist-carousel { min-height: 354px; }.deck { height: 267px; }
+  .deck .playlist-card { top: 17px; width: 174px; height: 225px; padding: 11px; transform: translateX(calc(-50% + var(--offset) * 137px)) rotateY(calc(var(--offset) * -28deg)) rotateZ(calc(var(--offset) * 3deg)) scale(calc(1 - var(--distance) * .13)); }
+  .deck .playlist-card img { height: 120px; }.deck .playlist-card strong { font-size: 20px; }
+  .deck-control { top: 102px; font-size: 48px; }.deck-control.previous { left: 7px; }.deck-control.next { right: 7px; }
+}
+
+/* Selected-work explorer: one project gets the stage at a time. */
+.project-explorer { padding: 138px 0 125px; border-top: 1px solid var(--line); background: #171918; position: relative; overflow: hidden; }
+.project-explorer::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .2; background-image: radial-gradient(var(--muted) 1px, transparent 1px); background-size: 42px 42px; }
+.project-explorer .shell { position: relative; }.explorer-title { display: flex; justify-content: space-between; align-items: end; margin-bottom: 42px; }.explorer-title .section-kicker { font-size: 15px; color: var(--ink); }.explorer-title p { max-width: 300px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.explorer-layout { min-height: 525px; display: grid; grid-template-columns: .92fr 1.08fr; border-top: 1px solid var(--line); }.explorer-list { display: flex; flex-direction: column; justify-content: center; }.project-option { width: 100%; display: grid; grid-template-columns: 54px 1fr; gap: 0 9px; padding: 21px 18px; text-align: left; border-bottom: 1px solid var(--line); color: #646665; transition: background .25s,color .25s; }.project-option span { grid-row: span 2; font: 12px 'DM Mono'; padding-top: 9px; }.project-option strong { font-size: clamp(30px,4vw,57px); line-height: .9; letter-spacing: -3px; }.project-option div { margin-top: 10px; display: flex; gap: 12px; }.project-option i { font-size: 11px; font-style: normal; color: inherit; }.project-option.is-selected { color: #03ef58; background: rgba(3,239,88,.035); }.project-option:hover { color: var(--lime); }
+.project-preview { display: grid; grid-template-rows: 1fr auto; border-left: 1px solid var(--line); padding-left: 55px; }.preview-visual { position: relative; overflow: hidden; min-height: 360px; margin-top: 6px; background: linear-gradient(135deg,#14261d,#1a1a26); display: grid; place-items: center; }.preview-noise { position: absolute; inset: 0; opacity: .35; background-image: linear-gradient(rgba(196,249,107,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(196,249,107,.08) 1px,transparent 1px); background-size: 28px 28px; }.preview-window { z-index: 1; width: 70%; padding: 27px; background: rgba(7,11,9,.82); border: 1px solid rgba(196,249,107,.5); box-shadow: 0 22px 60px rgba(0,0,0,.5); }.preview-window span,.preview-copy span { font: 10px 'DM Mono'; letter-spacing: 1px; color: var(--cyan); }.preview-window strong { display: block; margin: 17px 0; font-size: clamp(28px,4vw,48px); letter-spacing: -2px; }.preview-lines { display: grid; gap: 7px; }.preview-lines i { height: 4px; width: 100%; background: rgba(196,249,107,.4); }.preview-lines i:nth-child(2) { width: 73%; }.preview-lines i:nth-child(3) { width: 87%; }.preview-lines i:nth-child(4) { width: 47%; }.preview-orb { position: absolute; width: 260px; height: 260px; right: -35px; bottom: -65px; border-radius: 50%; background: var(--lime); opacity: .16; filter: blur(35px); }.preview-copy { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 22px 0; }.preview-copy p { max-width: 360px; color: var(--muted); font-size: 12px; line-height: 1.6; }.preview-copy button { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; color: var(--lime); white-space: nowrap; }
+
+/* Full-width off-clock experience: deck first, then the chess study. */
+.playground { padding: 125px 0; border-top: 1px solid var(--line); }.playground-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 48px; }.playground-head h2 { margin: 15px 0 0; font-size: clamp(40px,5.4vw,68px); line-height: .93; letter-spacing: -4px; }.playground-head p { max-width: 270px; color: var(--muted); font-size: 13px; line-height: 1.7; }.playground .playlist-carousel { width: 100%; min-height: 505px; background: radial-gradient(circle at 50% 23%,rgba(15,88,65,.35),transparent 28%),#070b09; }.playground .deck { height: 420px; }.playground .deck .playlist-card { top: 35px; width: 285px; height: 337px; padding: 17px; transform: translateX(calc(-50% + var(--offset) * 275px)) rotateY(calc(var(--offset) * -35deg)) rotateZ(calc(var(--offset) * 3deg)) scale(calc(1 - var(--distance) * .12)); }.playground .deck .playlist-card img { height: 184px; }.playground .deck .playlist-card strong { font-size: 31px; }.playground .deck-control { top: 175px; }.playground .playlist-carousel > p { padding: 0 35px; }.chess-feature { margin-top: 18px; min-height: 420px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 40px; align-items: center; padding: 42px; border: 1px solid var(--line); background: linear-gradient(115deg,#111714,#0b0e0d); }.chess-feature .chess-copy { padding: 0; }.chess-feature .chess-copy strong { font-size: clamp(32px,4vw,49px); }.chess-feature .board { width: min(100%,390px); justify-self: end; margin: 0; transform: rotate(1deg); }.chess-feature:hover .board { transform: rotate(0) scale(1.02); }
+
+@media (max-width: 720px) { .project-explorer { padding: 85px 0; }.explorer-title,.playground-head { display: block; }.explorer-title p,.playground-head p { margin-top: 18px; }.explorer-layout { display: block; }.project-option strong { font-size: 34px; }.project-preview { padding: 0; border-left: 0; }.preview-visual { min-height: 275px; }.preview-copy { display: block; padding: 18px 0; }.preview-copy button { margin-top: 17px; }.playground { padding: 85px 0; }.playground .playlist-carousel { min-height: 395px; }.playground .deck { height: 315px; }.playground .deck .playlist-card { top: 26px; width: 196px; height: 250px; padding: 12px; transform: translateX(calc(-50% + var(--offset) * 153px)) rotateY(calc(var(--offset) * -29deg)) rotateZ(calc(var(--offset) * 3deg)) scale(calc(1 - var(--distance) * .13)); }.playground .deck .playlist-card img { height: 133px; }.playground .deck .playlist-card strong { font-size: 22px; }.playground .deck-control { top: 130px; }.chess-feature { grid-template-columns: 1fr; gap: 30px; padding: 26px; }.chess-feature .board { justify-self: center; } }
