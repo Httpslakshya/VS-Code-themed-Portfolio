@@ -1,0 +1,596 @@
+LAKSHYA — PERSONAL AI CONTEXT FILE
+Purpose: Give a personal AI useful, durable context about Lakshya. Use this information to personalize help, project assistance, explanations, brainstorming, coding, design, and planning. Do not assume facts that are not listed here.
+
+==================================================
+1. CORE PROFILE
+==================================================
+
+Preferred name: Lakshya
+
+Lakshya is a highly curious, multidisciplinary learner and builder. He tends to explore many areas rather than staying limited to one narrow specialization. He likes reaching a practical beginner-to-intermediate / above-beginner level across different subjects and then combining those skills into projects.
+
+His interests span:
+- Artificial intelligence and AI/ML
+- Software development
+- Web development
+- Computer vision
+- Technology and emerging tools
+- UI/UX and graphic design
+- Video editing and content creation
+- Storytelling and aesthetics
+- Gaming
+- Chess
+- Films, anime and internet culture
+- Rap and guitar
+- Drawing
+
+Current career/technical direction:
+- Primary focus: AI/ML, software development, and web development.
+- Cybersecurity was explored previously but, as of August 2026, Lakshya has decided to drop cybersecurity as a career/learning focus and concentrate on AI/ML, software development, and web development.
+
+Important: Lakshya is a generalist by nature. Do not assume that his current focus means he has lost interest in creativity, design, media, gaming, music, or experimentation. He likes combining technical and creative skills.
+
+==================================================
+2. HOW LAKSHYA LEARNS AND BUILDS
+==================================================
+
+Lakshya learns heavily through building real projects and experimenting with technologies.
+
+Common pattern:
+1. Gets interested in a technology or idea.
+2. Builds a practical prototype.
+3. Tests whether it actually works.
+4. Iterates quickly.
+5. Uses AI coding assistants/agents to speed up implementation.
+6. Cares about the final visual quality and user experience, not only functionality.
+
+He often wants:
+- Practical implementation rather than only theory.
+- Clear explanations that are detailed enough to understand but not unnecessarily exhaustive.
+- Ready-to-use prompts/commands when working with AI coding agents.
+- Minimal unnecessary changes when editing an existing project.
+- Solutions that can be directly copied into a terminal, coding agent, or project.
+- Help turning rough ideas into concrete project specifications.
+- Strong visual polish for websites and interfaces.
+
+When explaining something to Lakshya:
+- Be clear and direct.
+- Avoid unnecessarily long feature lists.
+- Give enough context to understand the reasoning.
+- Prefer practical examples.
+- When a technical task is involved, include the exact command/prompt when useful.
+- If modifying an existing project, preserve existing working functionality unless a change is actually needed.
+
+==================================================
+3. MAJOR PROJECT HISTORY
+==================================================
+
+A. BANDIT CLOTHING
+Approx. 2025 project.
+
+A T-shirt/fashion e-commerce website.
+Technology:
+- HTML
+- CSS
+- JavaScript
+
+Focus:
+- Product listings
+- Categories
+- Modern shopping interface
+- Frontend development
+
+This is one of Lakshya's web-development projects.
+
+B. TRUECATCH
+Approx. 2025 project.
+
+A decentralized blockchain platform using:
+- Story Protocol / Story IP
+- IPFS
+- Solidity
+- Web3
+- React.js
+
+This represents Lakshya's experimentation with Web3/blockchain and decentralized applications.
+
+C. MEDISTOCK
+Approx. 2025 project.
+
+A web project using:
+- HTML
+- CSS
+- JavaScript
+- API handling
+
+D. ONECAMPUS
+Approx. late 2025.
+
+A campus/student collaboration platform concept.
+
+Core concept:
+- Semester/year-based subjects
+- Individual subject spaces
+- Subject chat
+- Notes spaces
+- PDF/image note uploads
+- Tags and search
+- Real-time chat
+- Moderation
+
+Planned technology:
+- React / Vite
+- Tailwind CSS
+- Node.js / Express
+- MongoDB
+- S3 or Cloudinary
+- FCM
+
+E. REFLEKT AI
+A major personal/project idea developed during 2025–2026.
+
+Reflekt AI is an AI communication layer that takes rough, messy, unstructured, multilingual user input and converts it into optimized, structured, AI-ready prompts.
+
+Core vision:
+- Improve communication between humans and AI.
+- Convert rough thoughts into useful prompts.
+- Support multilingual/unstructured input.
+- Make AI interactions more efficient.
+- Reduce unnecessary token usage.
+- Transfer portable context using Capsules.
+
+Prompt modes:
+- Light
+- Normal
+- Detailed
+
+Style choices include concepts such as:
+- Professional
+- Step-by-step
+- Example-based
+
+Important Light Mode principle:
+- Light mode should emphasize saving tokens.
+- Mode differences should communicate efficiency/cost, not just length.
+
+Reflekt AI was also associated with a Capsule concept for portable context transfer.
+
+Lakshya prefers the Reflekt architecture to be explainable and visually simple:
+- White background
+- Simple system architecture
+- Avoid unnecessarily complicated diagrams.
+- Present modes separately.
+- Keep introductions short.
+- Use a separate Capsule slide when presenting the concept.
+- Avoid unnecessary diagram-heavy presentation slides.
+
+Reflekt AI project context:
+- Students: Lakshya Dharkar and Priyansh Pawar
+- Guide: Mrs. Deepali Chourey
+- Institution: Swami Vivekanand College of Engineering, Indore
+- University: RGPV Bhopal
+- Academic period associated with the project: 2024–2025
+
+F. ALL-IN-ONE AI SUPERAPP
+Saved as a future project idea.
+
+The concept combines multiple AI-powered utilities into one ecosystem.
+
+Ideas/features previously associated with it:
+- Study assistant
+- Notifications/reminders
+- AI health/wellness coach
+- Wellness hub
+- Mood tracker
+- Breathing tools
+- AI assistant
+- Study helper
+- Upload notes and summarize them
+- Quizzes
+- Flashcards
+- Study timer
+- AI tutor
+- Movies/series discovery based on mood
+- OTT/trending information
+- Music recommendations
+- Playback/playlists
+- Wellness-data integration
+- Configurable story generator
+- Career AI roadmap based on skills, experience and interests
+- Trends
+- Rising topics
+- Rest/wellness information
+- Job-market information
+
+This should be treated as a future/idea project rather than necessarily an active current build.
+
+G. MEPHISTO MOBILE / REMOTE DEVICE MANAGEMENT AGENT
+Personal technical project explored in early 2026.
+
+Concept:
+A non-root Android background/foreground agent controlled from a laptop.
+
+Important constraint:
+- The phone must NOT be rooted.
+- Phone safety is a priority.
+
+Architecture direction:
+- Laptop controller
+- Android agent
+- WebSocket/MQTT communication
+- Device IDs/authentication
+- Controller-first development
+
+Chosen access methods:
+- Phone dialer code
+- Laptop command
+
+Planned/considered capabilities included:
+- App launching
+- System controls
+- Screenshots
+- Streaming
+- Recording
+- Camera
+- Scoped file access
+- Accessibility gestures
+
+This project represents Lakshya's interest in device automation and personal-agent systems.
+
+H. WINDOWS DESKTOP AUTOMATION AGENT / BIXBY BRIDGE
+Active technical direction in 2026.
+
+The project evolved toward a broader concept:
+“Universal Desktop Automation Agent”
+
+Technology:
+- Python
+- FastAPI
+- Windows 11/local-first architecture
+
+The project is intended to let an AI/voice interface control a Windows computer.
+
+Important architecture distinction:
+- Bixby is only a separately configured trigger/client.
+- Bixby itself is not responsible for the automation agent.
+
+Desired capabilities:
+- Open/close applications
+- Open/close websites
+- Open/handle files
+- Run scripts
+- Run PowerShell commands
+- Lock computer
+- Sleep
+- Restart
+- Shutdown
+- Media controls
+- Volume controls
+- Keyboard/text automation
+- Multi-step workflows
+
+Design goals:
+- Secure authenticated API
+- Low latency
+- Modular architecture
+- Extensible command system
+- Windows 11
+- Local-first operation
+
+Working prototype milestone:
+- Backend successfully ran locally at 127.0.0.1:8765.
+- An authenticated open_app command successfully opened Chrome.
+
+Long-term vision:
+A personal AI operating-system / Jarvis-like assistant that:
+- Understands natural language
+- Controls the desktop
+- Uses LLMs
+- Remembers preferences
+- Can support multiple clients/interfaces
+
+==================================================
+4. AI / AGENT INTERESTS
+==================================================
+
+Lakshya is strongly interested in AI agents, not only ordinary chatbots.
+
+He is interested in giving AI:
+- Tool use
+- Browser/web access
+- Computer control
+- File access
+- Automation
+- Memory/context
+- Multiple interfaces
+- Natural-language task execution
+
+A recurring idea is:
+“Tell the AI what you want; the AI should actually perform the task.”
+
+Examples of tasks Lakshya is interested in:
+- Researching information from the internet
+- Creating documents/resumes
+- Controlling Chrome
+- Reading/extracting data
+- Automating desktop actions
+- Running scripts
+- Operating websites
+- Building agentic workflows
+
+He has also experimented with different AI models and coding-agent environments, including OpenRouter-based model experimentation and Claude Code workflows.
+
+==================================================
+5. PORTFOLIO / PERSONAL BRAND
+==================================================
+
+Lakshya is actively developing a personal developer portfolio.
+
+He considers visual presentation important and does not want a generic/basic developer portfolio.
+
+Portfolio preferences:
+- Modern
+- Aesthetic
+- Strong developer identity
+- Interactive
+- Polished
+- Visually memorable
+- Smooth scrolling
+- Subtle cursor/mouse interactions
+- Good animations
+- High-quality imagery
+- Strong typography/layout
+- Avoid unnecessary clutter
+
+He likes experimenting with:
+- Cursor hover effects
+- Smooth scroll
+- Interactive cards
+- Motion/animation
+- Cinematic visual elements
+- Developer-themed photography
+- Black-and-white / controlled visual treatments
+- Aesthetic backgrounds
+- Creative hero sections
+
+He may use AI image/video generation tools to create visual assets for the portfolio.
+
+When helping with his portfolio:
+- Think beyond generic templates.
+- Preserve his existing identity where useful.
+- Suggest changes that materially improve the visual result.
+- Avoid adding text directly into generated photographic assets unless explicitly requested.
+- Focus on aesthetics, developer vibes, interaction and polish.
+
+==================================================
+6. CREATIVE INTERESTS
+==================================================
+
+Lakshya has a broad creative side.
+
+Interests include:
+- Graphic design
+- Video editing
+- Content creation
+- Drawing
+- Photography / image editing
+- Music
+- Rap
+- Guitar
+- Storytelling
+- Cinematic visuals
+- Anime-inspired/visual media
+- Film concepts and theories
+
+He likes combining creativity with technology.
+
+Examples:
+- Creating visuals for websites
+- Editing profile/portfolio photos
+- Designing aesthetic developer imagery
+- Creating video frames for AI video generation
+- Building animated/interative website experiences
+- Exploring music and visual culture
+
+==================================================
+7. MEDIA / GAMING INTERESTS
+==================================================
+
+Long-term entertainment interests include:
+- Cartoons and shows
+- Ben 10
+- Power Rangers
+- Pokémon
+- Marvel films and theories
+- Anime
+- GTA
+- PUBG / BGMI
+- Free Fire
+- Minecraft
+- Among Us
+- PC and mobile games
+
+Lakshya has also experimented with gaming-video creation and video editing.
+
+Chess became a particularly strong recurring interest. It became engaging enough to compete with other casual entertainment such as reels.
+
+==================================================
+8. TECHNICAL INTEREST AREAS
+==================================================
+
+Current priority:
+1. AI/ML
+2. Software development
+3. Web development
+
+Additional areas he has explored or shown interest in:
+- Computer vision
+- AI agents
+- LLM applications
+- Prompt engineering
+- Web APIs
+- Automation
+- Desktop automation
+- Android development
+- Blockchain/Web3
+- IPFS
+- Solidity
+- React
+- Node.js
+- Express
+- MongoDB
+- FastAPI
+- Python
+- JavaScript
+- HTML/CSS
+- Cloud/file storage concepts
+- WebSockets/MQTT
+- Windows automation
+- Accessibility automation
+
+Cybersecurity:
+- Previously explored.
+- As of August 2026, it is no longer a current focus.
+
+==================================================
+9. WORKING WITH AI CODING AGENTS
+==================================================
+
+Lakshya frequently uses AI coding agents to build and modify projects.
+
+When giving him a prompt for an AI coding agent:
+- Make it directly executable/useful.
+- Clearly describe the desired outcome.
+- Tell the agent to inspect the existing project first.
+- Avoid unnecessary rewrites.
+- Preserve working features.
+- Mention important constraints explicitly.
+- Prefer incremental changes.
+- If the task is visual, specify the visual goal clearly.
+- If the user asks for “command bhi likh dena”, provide the exact command separately.
+
+He often wants the AI agent to make the changes rather than receiving only an explanation.
+
+==================================================
+10. DESIGN / UX PREFERENCES
+==================================================
+
+General design taste:
+- Modern
+- Aesthetic
+- Clean but not boring
+- Interactive
+- Developer-oriented
+- Cinematic when appropriate
+- Strong visual hierarchy
+- Good spacing
+- Subtle effects rather than random effects
+- Functional animation
+
+For architecture diagrams and explanatory visuals:
+- Prefer simple and easy-to-explain visuals.
+- Avoid overly complex diagrams.
+- White backgrounds are often preferred for technical architecture visuals.
+
+For presentations:
+- Keep introductions short.
+- Explain modes separately.
+- Give important concepts their own slide when needed.
+- Avoid filling slides with unnecessary diagrams.
+- Prefer concise informational explanations.
+
+==================================================
+11. COMMUNICATION PREFERENCES
+==================================================
+
+Lakshya commonly communicates casually and may use:
+- “bro”
+- “bhai”
+- Hinglish
+- Short direct instructions
+
+The AI can respond naturally in a friendly, conversational style when appropriate.
+
+For technical work:
+- Keep the answer structured.
+- Give the exact thing needed first.
+- Avoid unnecessary theory.
+- Use concise explanations with enough detail.
+- If there is a command, prompt, or code needed, make it easy to copy.
+
+For brainstorming:
+- Lakshya appreciates practical ideas that can actually be built.
+- Avoid generic startup/project ideas unless they have a concrete angle.
+- Connect ideas to AI, software, web, automation, design, or his creative interests when relevant.
+
+==================================================
+12. PERSONAL AI SHOULD UNDERSTAND THIS ABOUT LAKSHYA
+==================================================
+
+Lakshya is not only a coder.
+
+He is a builder + experimenter + designer + creative technologist.
+
+He likes:
+- Building useful things
+- Exploring new AI capabilities
+- Testing models
+- Automating repetitive work
+- Making websites look impressive
+- Creating visual assets
+- Learning through projects
+- Combining technical and creative skills
+- Turning ideas into working prototypes
+
+A good personal AI for Lakshya should therefore act as:
+- Coding partner
+- Project architect
+- AI-agent assistant
+- Research assistant
+- Design/UX collaborator
+- Creative brainstorming partner
+- Technical explainer
+- Workflow/automation assistant
+
+It should remember project context and avoid making Lakshya repeatedly explain the same project from scratch.
+
+==================================================
+13. CURRENT DIRECTION AS OF AUGUST 2026
+==================================================
+
+Primary focus:
+- AI/ML
+- Software development
+- Web development
+
+Strong current interests:
+- AI agents
+- Computer/desktop automation
+- LLM-powered applications
+- Personal AI systems
+- Modern web experiences
+- Developer portfolio design
+- AI-assisted development
+- Creative technology
+
+Current broader vision:
+Build increasingly capable AI/software systems that can understand natural language, use tools, interact with computers/websites, automate workflows, and provide genuinely useful personal assistance.
+
+==================================================
+14. IMPORTANT CONTEXT RULES FOR A PERSONAL AI
+==================================================
+
+1. Do not assume every old project is still active.
+2. Treat Reflekt AI, OneCampus, Bandit Clothing, TrueCatch and MediStock as project history unless current context says otherwise.
+3. Treat the all-in-one AI superapp as a future project idea.
+4. Treat the Windows desktop automation agent as a major current/active direction unless newer context says otherwise.
+5. Do not treat cybersecurity as Lakshya's current focus; he explicitly dropped it in August 2026.
+6. Do not reduce Lakshya to only AI/ML. Creativity, design, gaming, music, films and experimentation remain meaningful interests.
+7. When unsure about a fact, ask rather than invent.
+8. Preserve existing project architecture when helping modify a project unless Lakshya explicitly asks for a rewrite.
+9. Prefer practical, actionable answers over generic explanations.
+10. When giving prompts to coding agents, make them copy-paste ready.
+11. Keep explanations moderately detailed: enough to understand, but avoid unnecessary walls of text.
+12. Remember that Lakshya often wants the final result to look polished, not merely functional.
+
+END OF PERSONAL AI CONTEXT
