@@ -1,8 +1,8 @@
 /**
- * api/cosmo.ts — Serverless / backend proxy endpoint for COSMO chat.
+ * netlify/functions/cosmo.ts — Netlify Serverless Function for COSMO chat proxy.
  *
- * Keeps GROQ_API_KEY safe on the server side — never exposed to client bundles.
- * Compatible with Vercel, Netlify Functions, and Node server environments.
+ * Keeps GROQ_API_KEY secure on the server side — never exposed in client bundles.
+ * Compatible with Netlify Functions v2 (Request/Response) and v1 (HandlerEvent).
  */
 
 interface RequestBody {
@@ -10,13 +10,10 @@ interface RequestBody {
   systemPrompt?: string;
 }
 
-export default async function handler(req: any, res?: any) {
-  // Handle HTTP method
-  const method = req.method || (req instanceof Request ? req.method : 'POST');
+export default async function handler(req: Request | any, context?: any) {
+  // Determine HTTP Method
+  const method = req?.method || req?.httpMethod || 'POST';
   if (method !== 'POST') {
-    if (res?.status) {
-      return res.status(405).json({ error: 'Method not allowed' });
-    }
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
       headers: { 'Content-Type': 'application/json' },
@@ -25,12 +22,13 @@ export default async function handler(req: any, res?: any) {
 
   const apiKey = process.env.GROQ_API_KEY || process.env.COSMO_API_KEY;
   if (!apiKey) {
-    const errorMsg = { error: 'GROQ_API_KEY is not configured on the server.' };
-    if (res?.status) return res.status(503).json(errorMsg);
-    return new Response(JSON.stringify(errorMsg), {
-      status: 503,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return new Response(
+      JSON.stringify({ error: 'GROQ_API_KEY is not configured in Netlify environment variables.' }),
+      {
+        status: 503,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
   }
 
   const endpoint = process.env.GROQ_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions';
@@ -71,26 +69,26 @@ export default async function handler(req: any, res?: any) {
 
     if (!groqRes.ok) {
       const errText = await groqRes.text();
-      if (res?.status) return res.status(groqRes.status).send(errText);
-      return new Response(errText, { status: groqRes.status });
+      return new Response(errText, {
+        status: groqRes.status,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
 
     const data = await groqRes.json();
     const reply = data?.choices?.[0]?.message?.content?.trim() || '';
 
-    if (res?.status) {
-      return res.status(200).json({ reply });
-    }
     return new Response(JSON.stringify({ reply }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (err: any) {
-    const errMsg = { error: err?.message || 'Failed to communicate with LLM' };
-    if (res?.status) return res.status(500).json(errMsg);
-    return new Response(JSON.stringify(errMsg), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return new Response(
+      JSON.stringify({ error: err?.message || 'Failed to communicate with LLM' }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
   }
 }
