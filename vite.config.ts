@@ -1,6 +1,9 @@
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 
+const GROQ_ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions';
+const GROQ_MODEL = 'openai/gpt-oss-120b';
+
 function cosmoApiDevPlugin(): Plugin {
   return {
     name: 'cosmo-api-dev-server',
@@ -25,17 +28,15 @@ function cosmoApiDevPlugin(): Plugin {
           req.on('end', async () => {
             try {
               const { messages = [], systemPrompt = '' } = JSON.parse(rawBody || '{}');
-              const endpoint = env.GROQ_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions';
-              const model = env.GROQ_MODEL || 'openai/gpt-oss-120b';
 
-              const groqRes = await fetch(endpoint, {
+              const groqRes = await fetch(GROQ_ENDPOINT, {
                 method: 'POST',
                 headers: {
                   'content-type': 'application/json',
                   authorization: `Bearer ${apiKey}`,
                 },
                 body: JSON.stringify({
-                  model,
+                  model: GROQ_MODEL,
                   max_tokens: 260,
                   temperature: 0.5,
                   messages: [

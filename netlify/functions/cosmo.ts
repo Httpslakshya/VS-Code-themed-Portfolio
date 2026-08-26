@@ -5,6 +5,9 @@
  * Compatible with Netlify Functions v2 (Request/Response) and v1 (HandlerEvent).
  */
 
+const GROQ_ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions';
+const GROQ_MODEL = 'openai/gpt-oss-120b';
+
 interface RequestBody {
   messages?: Array<{ role: 'user' | 'assistant'; content: string }>;
   systemPrompt?: string;
@@ -31,9 +34,6 @@ export default async function handler(req: Request | any, context?: any) {
     );
   }
 
-  const endpoint = process.env.GROQ_ENDPOINT || 'https://api.groq.com/openai/v1/chat/completions';
-  const model = process.env.GROQ_MODEL || 'openai/gpt-oss-120b';
-
   let body: RequestBody = {};
   try {
     if (typeof req.json === 'function') {
@@ -49,7 +49,7 @@ export default async function handler(req: Request | any, context?: any) {
 
   try {
     const payload = {
-      model,
+      model: GROQ_MODEL,
       max_tokens: 260,
       temperature: 0.5,
       messages: [
@@ -58,7 +58,7 @@ export default async function handler(req: Request | any, context?: any) {
       ],
     };
 
-    const groqRes = await fetch(endpoint, {
+    const groqRes = await fetch(GROQ_ENDPOINT, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
